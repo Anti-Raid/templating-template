@@ -29,8 +29,9 @@ IGNORE_FILES = [
 
 contents = {}
 for path in pathlib.Path(".").rglob("*"):
-    if str(path) in IGNORE_FILES:
-        continue
+    for f in IGNORE_FILES:
+        if str(path).startswith(f):
+            break
 
     if USE_BUNDLED_TEMPLATING_TYPES and str(path).startswith("templating-types"):
         continue # use bundled types
